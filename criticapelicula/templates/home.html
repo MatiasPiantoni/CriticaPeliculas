@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="pt-2 ps-5 ms-5 row">
+    <h1 style="font-family: 'Times New Roman', Times, serif; 
+      color: rgb(253, 207, 2);">Peliculas Destacadas</h1>
+    {% for e in peliculas %}
+      <div class="mt-2 col-sm-3">
+        <div class="containerp">
+          <img src="/media/{{e.foto_pelicula}}"
+          class="object-fit_fill" height="260px" width="175px">
+          <a href="{{e.get_absolute_url}}">
+            <div class="overlay">
+              <div class="top-left"><img src="/media/media/star.jpg" 
+                class="avatar" height="30px" width="30px">{{e.puntaje_pelicula}}</div>
+              <div class="text1">{{e.nombre_pelicula}}</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

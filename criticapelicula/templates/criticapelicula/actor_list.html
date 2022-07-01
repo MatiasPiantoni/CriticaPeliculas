@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Actores</h1> 
+  {% if actor_list %}
+    <div class="row">
+      {% for actor in actor_list %}
+        <div class="ps-5 pe-5 pt-3 col-sm-2">
+          <p><a href="{{ actor.get_absolute_url }}"><img src="/media/{{actor.foto_actor}}" 
+            class="object-fit_fill grow"  height="220px" width="180px"></a></p>
+          <div class="containers">
+            <p class="text2">{{actor.nombre}} {{actor.apellido}}</p>
+          </div> 
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No hay actores</p>
+  {% endif %}
+{% endblock %}
