@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1 class="mb-5">Revisar Criticas</h1>
+
+    {% if critica_list %}
+    <ul>
+      {% for crt in critica_list %}
+       {% if crt.estado == 'e' %}
+        <li>  
+         <div class="row">
+          <div class="col-sm-8">
+            <div class="p-1 m-3 containerb">
+                <div class="row">
+                    <div class="col-sm-11">
+                     <p style="color: rgb(253, 207, 2);" class="ps-3 pt-3 pb-3"><strong>{{ crt.nombre }}</strong></p>
+                    </div>
+                    <div class="col-sm-1">
+                     <p class="text-right"><img src="/media/media/star.jpg" 
+                        class="avatar" height="30px" width="30px">{{ crt.puntaje_critica }}</p>             
+                    </div>   
+                </div>
+                <div class="p-3 ms-3 me-3 mb-3 containera">
+                 <p>{{ crt.comentario }}</p>
+                </div>
+            </div>
+          </div>
+          <div class="col-sm-2 mt-5">
+           <a href="{% url 'critica-update' crt.id %}" class="btn btn-dark">Revisar</a>
+          </div>
+         </div>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    {% else %}
+      <p>No hay criticas para revisar.</p>
+    {% endif %}
+{% endblock %}

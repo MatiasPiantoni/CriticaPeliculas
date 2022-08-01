@@ -125,20 +125,50 @@
             <div class="collapse navbar-collapse" id="collapsibleBar">
               <ul class="navbar-nav" style="height: 320px;">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Peliculas</a>
+                  <a class="nav-link" href="{% url 'pelicula' %}">Peliculas</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'actor' %}">Actores</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Directores</a>
+                  <a class="nav-link" href="{% url 'director' %}">Directores</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="mt-3" style="font-size:20px;">Usuario: {{ user.get_username }}</li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+                </li>
+                  {% if perms.criticapelicula.can_mark_returned %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'revisar-criticas' %}">Revisar Criticas</a>
+                  </li>
+                  {% endif %}
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+                </li>
+                {% endif %}
               </ul>
             </div> 
           </div> 
         </div>
       </div>
     </nav>
+    {% if is_paginated %}
+      <div class="pagination">
+          <span class="page-links">
+              {% if page_obj.has_previous %}
+                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}" class="btn btn-primary">previous</a>
+              {% endif %}
+              <span class="page-current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+              {% if page_obj.has_next %}
+                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}" class="btn btn-primary">next</a>
+              {% endif %}
+          </span>
+      </div>
+    {% endif %}
     <div class="bg">
       <div class="container-fluid">
         {% block content %}{% endblock %}

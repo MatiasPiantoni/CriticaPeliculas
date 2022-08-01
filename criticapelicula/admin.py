@@ -43,5 +43,5 @@ class PeliculaAdmin(admin.ModelAdmin):
 @admin.register(Critica)
 class CriticaAdmin(admin.ModelAdmin):
     list_display = ('pelicula', 'nombre', 'email', 'puntaje_critica')
-    fields = ['pelicula', 'nombre', 'email', 'puntaje_critica', 'comentario'] 
+    fields = ['pelicula', 'nombre', 'email', 'puntaje_critica', 'comentario', 'estado'] 
     search_fields = ("email__startswith", )   

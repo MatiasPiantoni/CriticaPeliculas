@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 class="mb-2">Actualizar Critica</h1>
+<div class="row"> 
+  <div class="col-sm-9">
+    <div class="p-1 m-5 containerb">
+      <div class="row">
+        <div class="col-sm-11">
+          <p style="color: rgb(253, 207, 2);" class="ps-3 pt-3 pb-3"><strong>{{ critica.nombre }}</strong></p>
+        </div>
+        <div class="col-sm-1">
+          <p class="text-right"><img src="/media/media/star.jpg" 
+            class="avatar" height="30px" width="30px">{{ critica.puntaje_critica }}</p>             
+        </div>   
+      </div>
+    <div class="p-3 ms-3 me-3 mb-3 containera">
+    <p>{{ critica.comentario }}</p>
+    </div>
+    <form action="" method="post">
+      {% csrf_token %}
+      <table>
+      {{ form.as_table }}
+      </table>
+      <input type="submit" value="Ok">
+    </form>
+  </div>
+</div>
+{% endblock %}

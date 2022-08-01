@@ -102,7 +102,10 @@ class Critica (models.Model):
     )
 
     estado = models.CharField(max_length=1, choices=ESTADO_COMENTARIO, default='e')
-
+    
+    class Meta:
+        permissions = (("puede_revisar_criticas", "Revisa Criticas"),)
+    
     def save(self, *args, **kwargs):
         super(Critica, self).save(*args, **kwargs) 
         peli = self.pelicula

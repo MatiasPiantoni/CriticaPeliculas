@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Peliculas</h1> 
+  <form action="{% url 'search_results' %}" method="get">
+    <input name="q" type="text" placeholder="Search...">
+  </form>
+  {% if pelicula_list %}
+    <div class="row">
+      {% for pelicula in pelicula_list %}
+        <div class="ps-5 pe-5 pt-3 col-sm-2">
+          <p><a href="{{ pelicula.get_absolute_url }}"><img src="/media/{{pelicula.foto_pelicula}}" 
+            class="object-fit_fill grow"  height="260px" width="175px"></a></p>
+          <div class="containers">
+            <p class="text2">{{pelicula.nombre_pelicula}}</p>
+          </div> 
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No hay peliculas</p>
+  {% endif %}
+{% endblock %}

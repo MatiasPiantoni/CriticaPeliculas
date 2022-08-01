@@ -2,16 +2,16 @@
 
 {% block content %}
   <div class="pt-5 row">
-    <h1><img src="/media/{{actor.foto_actor}}" class="img-thumbnail"  height="250px" width="210px"></h1>
-    <h2>{{actor.nombre}}, {{actor.apellido}}</h2>
+    <h1><img src="/media/{{director.foto_director}}" class="img-thumbnail"  height="250px" width="210px"></h1>
+    <h2>{{director.nombre}}, {{director.apellido}}</h2>
 
-    <p><strong>Nacimiento:</strong> {{ actor.fecha_de_nacimiento }}</p>
-    <p><strong>Edad:</strong> {{ actor.edad_actor }}</p>
+    <p><strong>Nacimiento:</strong> {{ director.fecha_de_nacimiento }}</p>
+    <p><strong>Edad:</strong> {{ director.edad_director }}</p>
     <div class="col-sm-6">
       <div style="margin-left:20px;margin-top:20px">
         <h4>Peliculas</h4> 
         <div class="row">
-            {% for pelicula in actor.pelicula_set.all %}
+            {% for pelicula in director.pelicula_set.all %}
             <div class="col-sm-4">
               <p><a href="{{ pelicula.get_absolute_url }}"><img src="/media/{{pelicula.foto_pelicula}}" 
                 class="object-fit_fill grow" height="140px" width="100px"></a></p> 
